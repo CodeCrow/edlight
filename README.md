@@ -40,7 +40,7 @@ Make sure you are in the project directory.  Now run the following to stand the 
 
 `docker-compose up`
 
-You can access the api here: [http://127.0.0.1:8000/analyze/](http://127.0.0.1:8000/analyze/).  Images can be sent via 'POST' as a field name 'file'.
+You can access the api here: [http://127.0.0.1:8000/analyze/](http://127.0.0.1:8000/analyze/).  Images can be sent via 'POST' as a field named 'file'.
 
 This can be accessed and tested most simply here: [http://127.0.0.1:8000/docs#/default/edlight_api_analyze](http://127.0.0.1:8000/docs#/default/edlight_api_analyze).   Click on the button marked 'Try it out' and then upload the file.
 
