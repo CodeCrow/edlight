@@ -162,3 +162,5 @@ cython_debug/
 # Project Specific
 # Don't upload local values
 local.py
+# Don't upload docker storage
+.ephemeral
