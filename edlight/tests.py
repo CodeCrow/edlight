@@ -24,6 +24,23 @@ class ImageAnalysisTestCase(TestCase):
             response = self.client.post('/analyze/', {'file': fp})
             self.assertEqual(response.status_code, 200)
 
+    def test_incorrect_type(self):
+        """
+        send something other than a file
+        """
+        response = self.client.post('/analyze/', {'file': "just a string"})
+        self.assertEqual(response.status_code, 422)
+
+
+    def test_incorrect_field(self):
+        """
+        send something other than a file
+        """
+        success_file = os.path.join(settings.STATIC_ROOT, "tests/success_test.jpg")
+        with open(success_file, 'rb') as fp:
+            response = self.client.post('/analyze/', {'badname': fp})
+            self.assertEqual(response.status_code, 422)
+
     def test_upload_failure_file_type(self):
         """
         Are we checking the types correctly?
