@@ -42,3 +42,13 @@ Make sure you are in the project directory.  Now run the following to stand the 
 You can access the api here: [http://127.0.0.1:8000/analyze/](http://127.0.0.1:8000/analyze/).  Images can be sent via 'POST' as a field name 'file'.
 
 This can be accessed and tested most simply here: [http://127.0.0.1:8000/docs#/default/edlight_api_analyze](http://127.0.0.1:8000/docs#/default/edlight_api_analyze).   Click on the button marked 'Try it out' and then upload the file.
+
+# Testing
+
+To test, enter the docker container: 
+
+`docker exec -it edlight-python-1 bash`
+
+Then run the tests . . .
+
+`./manage.py test --settings=edlight.settings.local`
