@@ -8,6 +8,7 @@ django-ninja = "*"
 maturin = "*"
 openai = "*"
 requests = "*"
+python-magic = "*"
 
 [dev-packages]
 

@@ -138,3 +138,6 @@ a system like direnv (https://direnv.net/) or a local settings file that is
 not included in the repository.
 """
 OPENAI_KEY = os.environ.get('OPENAPI_KEY', None)
+# what model are we using 
+# (so we can have different models for shipping vs update)
+OPENAI_MODEL = os.environ.get('OPENAI_MODEL', 'gpt-4-vision-preview')
