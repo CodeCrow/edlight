@@ -32,9 +32,9 @@ class ImageAnalysisTestCase(TestCase):
         with open(upload_file, 'rb') as fp:
             response = self.client.post('/analyze/', {'file': fp})
             self.assertEqual(response.status_code, 422)
-            self.assertEqual(response.body, "Uploaded file must be an image.")
+            self.assertEqual(response.content, b"Uploaded file must be an image.")
         upload_file = os.path.join(settings.STATIC_ROOT, "tests/image_type_fail_test.tiff")
         with open(upload_file, 'rb') as fp:
             response = self.client.post('/analyze/', {'file': fp})
             self.assertEqual(response.status_code, 422)
-            self.assertEqual(response.body, "Uploaded file must be an image of types jpeg, gif, png.")
+            self.assertEqual(response.content, b"Uploaded file must be an image of types jpeg, gif, png.")
