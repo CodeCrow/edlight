@@ -1,0 +1,48 @@
+---
+version: '0.1.0'
+
+services:
+  postgres:
+    image: postgres:latest
+    volumes:
+      - ${POSTGRES_DATA-./.ephemeral/postgres-data}:/var/lib/postgresql/data
+    ports:
+      - "${PGPORT-55432}:5432"
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=edlight
+      - POSTGRES_HOST=postgres
+#      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: on-failure
+
+  python:
+    build:
+      context: .
+      dockerfile: ./config/docker/Dockerfile
+    working_dir: /opt/edlight
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./:/opt/edlight:delegated
+      - ./.ephemeral/temporaryfiles:/temporaryfiles:delegated
+      - ./.ephemeral/locale:/locale:delegated
+      - ./.ephemeral/webroot:/webroot:delegated
+      - ./.ephemeral/logs:/logs:delegated
+    command: bash /opt/edlight/startup_server.sh local
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=edlight
+      - POSTGRES_HOST=postgres
+      - DJANGO_EMAIL_PASSWORD=noneya
+      - ENVIRONMENT=local
+      - SECRET_KEY
