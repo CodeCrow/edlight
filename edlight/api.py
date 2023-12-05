@@ -86,8 +86,11 @@ def analyze(request, file: UploadedFile = File(...)) -> dict:
         if response_json['error'].get('type') == "server_error":
             openai_error_status = 503
             raise HttpError(openai_error_status, response_json['error'].get('message', "An unknown error has occured."))
+        if response_json['error'].get('code') == "invalid_api_key":
+            openai_error_status = 403
+            raise HttpError(openai_error_status, response_json['error'].get('message', "You do not have a valid API key to access OpenAI"))
         # there was an error but we don't know what it was
-        raise HttpError(openai_error_status, "An unknown error has occured when accessing OpenAI.")
+        raise HttpError(openai_error_status, f"An unknown error has occured when accessing OpenAI. {response_json.get('error')}")
     # process the response
     try:
         response_json = response.json()
