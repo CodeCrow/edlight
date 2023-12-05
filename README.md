@@ -27,7 +27,8 @@ Build the local docker environment:
 
 To access Open AI, you will have to sign up and get access keys, and then add them to the application.
 
-1. Find the `local_template.py` file and copy it to `local.py`
+1. Find the `edlight/settings/local_template.py` file and copy it to `edlight/settings/local.py `: 
+  2. `cp edlight/settings/local_template.py edlight/settings/local.py`
   2. Make sure you do not add this new file to the respository.
 2. Go to the [Open AI website](https://openai.com/) and sign up.
 3. Once you have logged in, navigate to the [api-keys section](https://platform.openai.com/api-keys) and create a new secret key.

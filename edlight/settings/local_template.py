@@ -7,4 +7,4 @@ from .common import *
 
 DEBUG = True
 
-OPENAI_KEY = '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'
+OPENAI_KEY = '<ENTER OPEN AI API KEY HERE>'
