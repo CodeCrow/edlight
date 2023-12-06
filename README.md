@@ -1,5 +1,5 @@
 # Overview
-This is the entry for the aynchronous task for the Senior Full Stack Developer Position.
+This is the entry for the aynchronous task for the Senior Full Stack Developer Position, produced by Rob Archer (rob@crowbringsdaylight.com).
 
 It was created using
 
